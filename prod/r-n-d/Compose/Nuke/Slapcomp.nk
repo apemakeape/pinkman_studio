@@ -1,0 +1,803 @@
+#! C:/Program Files/Nuke15.1v2/nuke-15.1.2.dll -nx
+version 15.1 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="3437" h="1360" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="2471" stretch="1"/>
+            <splitter orientation="2">
+                <split size="879"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="439"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="918"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/Compose/Nuke/Slapcomp.nk
+ frame 12
+ format "2560 1440 0 0 2560 1440 1 "
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config fn-nuke_studio-config-v1.0.0_aces-v1.3_ocio-v2.1
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT scene_linear
+ monitorLut "ACES 1.0 - SDR Video (sRGB - Display)"
+ monitorOutLUT "ACES 1.0 - SDR Video (sRGB - Display)"
+ int8Lut matte_paint
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut scene_linear
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant1
+ xpos 17
+ ypos 287
+}
+Read {
+ inputs 0
+ file_type exr
+ file C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/render/pinkman.studio.rnd_v002.karmarendersettings.crypto.0001.exr
+ format "2560 1440 0 0 2560 1440 1 "
+ origset true
+ name Read3
+ xpos 163
+ ypos -77
+}
+set Na09e2000 [stack 0]
+Cryptomatte {
+ pickerAdd {1.179247975 1.117967606 0.2218704224 1 1478 1135 1479 1136}
+ pickerRemove {0.1498765945 0.1480255127 0.09210205078 0 2176 598 2177 599}
+ matteList "/mat/top_acc\n/mat/coin\n/mat/base_acc\n/mat/cheque\n/mat/paper\n/mat/base\n/mat/chip\n/mat/top\n/mat/card_glass_01\n/mat/card_grad_01\n/mat/arrows\n/mat/card_glass_03\n/mat/card_glass_02"
+ lastSelectedCryptoLayerName CryptoMaterial
+ name Cryptomatte1
+ xpos 336
+ ypos -41
+}
+Invert {
+ name Invert1
+ xpos 336
+ ypos 77
+}
+push $Na09e2000
+Roto {
+ inputs 1+1
+ output {-rgba.alpha none none mask.a}
+ premultiply rgb
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44a00000 x44340000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}}}}}
+ toolbox {createBezier {
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1280 720}
+ view {}
+ motionblur_on true
+ name Roto1
+ xpos 163
+ ypos 77
+}
+set Na09e3000 [stack 0]
+ColorCorrect {
+ saturation 0
+ contrast 0
+ gamma 5
+ gain 4
+ name ColorCorrect1
+ xpos 163
+ ypos 159
+}
+Blur {
+ size 2
+ name Blur1
+ xpos 166
+ ypos 213
+}
+Merge2 {
+ inputs 2
+ name Merge1
+ xpos 166
+ ypos 311
+}
+push $Na09e3000
+Premult {
+ channels alpha
+ alpha rotopaint_mask.a
+ name Premult1
+ xpos 408
+ ypos 166
+}
+set Na2040800 [stack 0]
+Write {
+ channels rgba
+ file C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/Compose/publish/mask4.png
+ file_type png
+ premultiplied true
+ create_directories true
+ checkHashOnRead false
+ version 22
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace scene_linear
+ display "sRGB - Display"
+ view "ACES 1.0 - SDR Video"
+ name Write4
+ xpos 402
+ ypos 297
+}
+Roto {
+ inputs 0
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44a00000 x44340000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Bezier1 512 bezier
+     {{cc
+       {f 8192}
+       {px x41400000
+        {xc0e00000 xc2540000}
+        {x44762cd2 x42dd333c}
+        {x40e00000 x42540000}
+        {xc2580000 xc2080000}
+        {x44cea666 x4459d99a}
+        {x42580000 x42080000}
+        {0 0}
+        {x44d1c000 x447a4000}
+        {0 0}
+        {0 0}
+        {x44bf4000 x449ec000}
+        {0 0}
+        {0 0}
+        {x44ae8000 x44a12000}
+        {0 0}
+        {xc1100000 xc1400000}
+        {x44bb0000 x44b80000}
+        {x41100000 x41400000}
+        {0 0}
+        {x44e9c000 x44c38000}
+        {0 0}
+        {xc0400000 x42080000}
+        {x44ffe000 x44aee000}
+        {x40400000 xc2080000}
+        {0 x41f80000}
+        {x450d8000 x44832000}
+        {0 xc1f80000}
+        {x41000000 x41f80000}
+        {x450b8000 x44388000}
+        {xc1000000 xc1f80000}
+        {x41f80000 x41200000}
+        {x44fb0000 x43c38000}
+        {xc1f80000 xc1200000}
+        {x40400000 xc0400000}
+        {x44aaa001 xc1a33330}
+        {xc0400000 x40400000}}}     idem}
+     {tx x41400000 x44dd1d55 x44756000}
+     {a osw x41200000 osf 0 str 1 spx x44a00000 spy x44340000 sb 1 ltn x41400000 ltm x41400000 tt x40800000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1280 720}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ lifetime_start 12
+ lifetime_end 12
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name Roto2
+ xpos 613
+ ypos 511
+}
+Blur {
+ size 100
+ name Blur2
+ xpos 617
+ ypos 561
+}
+push 0
+Read {
+ inputs 0
+ file_type exr
+ file C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/render/pinkman.studio.rnd_v001.karmarendersettings.0096.exr
+ format "2560 1440 0 0 2560 1440 1 "
+ origset true
+ colorspace "Linear ARRI Wide Gamut 3"
+ name Read4
+ xpos 388
+ ypos 400
+}
+Group {
+ inputs 3
+ name apGlow
+ help "apeGlow v1.0 - apEssentials by Adrian Pueyo\n\nExponential glow with advanced controls, using the traditional multi-blur approach.\n\nWith the \"area\" input (optional) you can set only a part of the image to emit glow.\nNaN's will be turned black, on rgba only.\n\nadrianpueyo.com, 2015-2019."
+ onCreate "n = nuke.thisNode()\nfor i in \['intensity','response','max_size','src_black','src_white','response']:\n    n\[i].setFlag(0x00000004)\nn\['max_size'].setRange(0,10000)\nn\['overscan'].setRange(0,1000)"
+ knobChanged "n = nuke.thisNode()\nk = nuke.thisKnob()\nif k.name() in \[\"crop\",\"enableOverscan\"]:\n    kcv = n\[\"crop\"].value()\n    kov = n\[\"enableOverscan\"].value()\n    n\[\"enableOverscan\"].setEnabled(not kcv)\n    n\['overscan'].setEnabled(not kcv and kov)\nelif k.name() == \"s\":\n    s = int(k.value())\n    if s<1:\n        k.setValue(1)\n    else:\n        nd = nuke.toNode(\"DP\")\n        nm = nuke.toNode(\"MergeBlurs\")\n        b0 = nuke.toNode(\"Blur0\")\n        b0x = b0.xpos()\n        b0y = b0.ypos()\n        b0n = b0.name()\n        for i in range(1,nm.inputs()):\n            nm.setInput(i,None)\n        \[nuke.delete(i) for i in nuke.allNodes() if i.xpos()>nd.xpos()]\n        for i in range(1,s):\n            # Blur\n            b = nuke.nodes.Blur()\n            b.setXYpos(b0x+i*100,b0y)\n            b.setInput(0,nd)\n            b\[\"channels\"].setValue(\"all\")\n            for bk in \[\"filter\",\"quality\"]:\n                b\[bk].setExpression(b0n+\".\"+bk)\n            b\[\"crop\"].setValue(0)\n            b\[\"size\"].setValue(\[0,0])\n            b\[\"size\"].setExpression(\"DP.j((1/parent.s)*%s)/ parent.f\"%(i+1))\n            # Multiply\n            m = nuke.nodes.Multiply()\n            m.setXYpos(b0x+i*100,b0y+38)\n            m.setInput(0,b)\n            m\[\"channels\"].setValue(\"all\")\n            m\[\"value\"].setValue(\[0,0,0,0])\n            m\[\"value\"].setExpression( \"parent.p*%s+%s\"%((i+1)/(s),1-(i+1)/(s)))\n            # Merge\n            nm.setInput(i if i<2 else i+1, m)"
+ tile_color 0xe88543ff
+ xpos 388
+ ypos 573
+ addUserKnob {20 apeGlow}
+ addUserKnob {41 channels T KeepWhat.channels}
+ addUserKnob {7 intensity t "Intensity multiplier for the resulting glow." R 0 10}
+ intensity 1.04
+ addUserKnob {18 p l persistance t "Color gain of the largest step. Affects the other steps progressively, with the least effect on the smallest one.\n\nUse as an inverse falloff or as a progressive color tint." R 0 10}
+ p 4.1
+ addUserKnob {6 p_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {18 tint t "Overall color multiplier for the intensity."}
+ tint 0.088
+ addUserKnob {6 tint_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {6 effect_only l "effect only" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {7 src_black l "src black" t "Black point of the source image's luminance.\nClip the effect below this luminance value." R 0 4}
+ addUserKnob {7 src_white l "src white" t "White point of the source image's luminance." R 0 4}
+ src_white 1
+ addUserKnob {41 white_clamp l clamp -STARTLINE T Grade1.white_clamp}
+ addUserKnob {7 response t "Gamma on the source image's luminance, to change the response curve falloff." R 0 4}
+ response 0.018
+ addUserKnob {26 ""}
+ addUserKnob {14 max_size l "max size" t "Maximum pixel size of the exponential glow." R 0 10000}
+ max_size 1880
+ addUserKnob {14 f l "size falloff" t "Falloff adjustment on the exponential distribution of the blur sizes.\n\nReduce this to have the glow more diffuse (starting with larger blurs).\nIncrease to have the glow tighter and more defined (start with smaller blurs)." R 0 10}
+ f 2.14
+ addUserKnob {3 s l steps t "Number of blur iterations to combine together."}
+ s 10
+ addUserKnob {41 filter T Blur0.filter}
+ addUserKnob {41 quality l "" -STARTLINE T Blur0.quality}
+ addUserKnob {6 crop l "crop to format" -STARTLINE}
+ addUserKnob {14 overscan R 0 1000}
+ overscan 100
+ addUserKnob {6 enableOverscan l enable -STARTLINE}
+ enableOverscan true
+ addUserKnob {26 ""}
+ addUserKnob {41 maskChannelArea l area -STARTLINE T ExpressionArea.maskChannelMask}
+ addUserKnob {41 inject_area l inject -STARTLINE T ExpressionArea.inject}
+ addUserKnob {41 invert_area l invert -STARTLINE T ExpressionArea.invert_mask}
+ addUserKnob {41 fringe_area l fringe -STARTLINE T ExpressionArea.fringe}
+ addUserKnob {41 maskChannelMask l mask T Merge.maskChannelMask}
+ addUserKnob {41 inject -STARTLINE T Merge.inject}
+ addUserKnob {41 invert_mask l invert -STARTLINE T Merge.invert_mask}
+ addUserKnob {41 fringe -STARTLINE T Merge.fringe}
+ addUserKnob {41 mix T Merge.mix}
+ addUserKnob {26 version_author l "" t "apeGlow v1.0\n2019" +STARTLINE T "<span style=\"color:#666\"><br/><b>apeGlow v1.0</b> - <a href=\"http://www.adrianpueyo.com\" style=\"color:#666;text-decoration: none;\">adrianpueyo.com</a>, 2015-2019</span>"}
+}
+ Input {
+  inputs 0
+  name Inputmask
+  xpos -883
+  ypos 975
+  number 2
+ }
+ Input {
+  inputs 0
+  name Inputarea
+  xpos -638
+  ypos 383
+  number 1
+ }
+ Input {
+  inputs 0
+  name Inputimg
+  xpos -773
+  ypos 220
+ }
+ Dot {
+  name Dot6
+  xpos -739
+  ypos 308
+ }
+set Nce018400 [stack 0]
+ Dot {
+  name Dot8
+  xpos -494
+  ypos 308
+ }
+set Nb81d2800 [stack 0]
+ Remove {
+  name RemoveAll
+  xpos -528
+  ypos 345
+ }
+ Expression {
+  inputs 1+1
+  channel0 rgba
+  expr0 1
+  name ExpressionArea
+  xpos -528
+  ypos 383
+  disable {{"!\[exists parent.input1]"}}
+ }
+ Shuffle {
+  red white
+  green white
+  blue white
+  alpha white
+  name ShuffleWhite
+  xpos -528
+  ypos 409
+  disable {{"\[exists parent.input1]"}}
+ }
+push $Nb81d2800
+ Dot {
+  name Dot7
+  xpos -384
+  ypos 308
+ }
+ Remove {
+  operation keep
+  channels rgba
+  name KeepWhat
+  xpos -418
+  ypos 377
+ }
+add_layer {apGlowArea apGlowArea.red}
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 apGlowArea.red
+  name Copy1
+  xpos -418
+  ypos 403
+  disable {{"!\[exists parent.input1]"}}
+ }
+ Premult {
+  channels all
+  alpha apGlowArea.red
+  name Premult1
+  xpos -418
+  ypos 441
+  disable {{"!\[exists parent.input1]"}}
+ }
+ Remove {
+  channels apGlowArea
+  name RemoveArea
+  xpos -418
+  ypos 479
+  disable {{"!\[exists parent.input1]"}}
+ }
+ Dot {
+  name Dot5
+  xpos -384
+  ypos 538
+ }
+set Nccc93800 [stack 0]
+ Dot {
+  name Dot1
+  xpos -494
+  ypos 538
+ }
+ Saturation {
+  channels all
+  saturation 0
+  name Saturation1
+  xpos -528
+  ypos 556
+ }
+set Nbdd8f800 [stack 0]
+ Grade {
+  channels all
+  blackpoint {{parent.src_black}}
+  whitepoint {{parent.src_white}}
+  gamma {{parent.response}}
+  name Grade1
+  xpos -528
+  ypos 594
+ }
+push $Nccc93800
+push $Nbdd8f800
+ Merge2 {
+  inputs 2
+  operation divide
+  also_merge all
+  name Merge4
+  xpos -418
+  ypos 562
+ }
+ Merge2 {
+  inputs 2
+  operation multiply
+  also_merge all
+  name Merge3
+  xpos -418
+  ypos 600
+ }
+ Dot {
+  name DP
+  xpos -384
+  ypos 671
+  addUserKnob {20 User}
+  addUserKnob {14 j R 0 100}
+  j {{"pow(2, t*(log(parent.max_size*parent.f)/log(2)) )"} {"pow(2, t*(log(parent.max_size*parent.f)/log(2)) )"}}
+ }
+set Nbb0b4800 [stack 0]
+ Blur {
+  size {{"DP.j((1/parent.s)*10)/ parent.f"} {"DP.j((1/parent.s)*10)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur9
+  xpos 482
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*1.0+0.0} {parent.p*1.0+0.0} {parent.p*1.0+0.0} {parent.p*1.0+0.0}}
+  name Multiply9
+  xpos 482
+  ypos 767
+ }
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j((1/parent.s)*9)/ parent.f"} {"DP.j((1/parent.s)*9)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur8
+  xpos 382
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*0.9+0.1} {parent.p*0.9+0.1} {parent.p*0.9+0.1} {parent.p*0.9+0.1}}
+  name Multiply8
+  xpos 382
+  ypos 767
+ }
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j((1/parent.s)*8)/ parent.f"} {"DP.j((1/parent.s)*8)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur7
+  xpos 282
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*0.8+0.2} {parent.p*0.8+0.2} {parent.p*0.8+0.2} {parent.p*0.8+0.2}}
+  name Multiply7
+  xpos 282
+  ypos 767
+ }
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j((1/parent.s)*7)/ parent.f"} {"DP.j((1/parent.s)*7)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur6
+  xpos 182
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*0.7+0.3} {parent.p*0.7+0.3} {parent.p*0.7+0.3} {parent.p*0.7+0.3}}
+  name Multiply6
+  xpos 182
+  ypos 767
+ }
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j((1/parent.s)*6)/ parent.f"} {"DP.j((1/parent.s)*6)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur5
+  xpos 82
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*0.6+0.4} {parent.p*0.6+0.4} {parent.p*0.6+0.4} {parent.p*0.6+0.4}}
+  name Multiply5
+  xpos 82
+  ypos 767
+ }
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j((1/parent.s)*5)/ parent.f"} {"DP.j((1/parent.s)*5)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur4
+  xpos -18
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*0.5+0.5} {parent.p*0.5+0.5} {parent.p*0.5+0.5} {parent.p*0.5+0.5}}
+  name Multiply4
+  xpos -18
+  ypos 767
+ }
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j((1/parent.s)*4)/ parent.f"} {"DP.j((1/parent.s)*4)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur3
+  xpos -118
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*0.4+0.6} {parent.p*0.4+0.6} {parent.p*0.4+0.6} {parent.p*0.4+0.6}}
+  name Multiply3
+  xpos -118
+  ypos 767
+ }
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j((1/parent.s)*3)/ parent.f"} {"DP.j((1/parent.s)*3)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur2
+  xpos -218
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*0.3+0.7} {parent.p*0.3+0.7} {parent.p*0.3+0.7} {parent.p*0.3+0.7}}
+  name Multiply2
+  xpos -218
+  ypos 767
+ }
+push 0
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j((1/parent.s)*2)/ parent.f"} {"DP.j((1/parent.s)*2)/ parent.f"}}
+  filter {{Blur0.filter}}
+  quality {{Blur0.quality}}
+  crop false
+  name Blur1
+  xpos -318
+  ypos 729
+ }
+ Multiply {
+  value {{parent.p*0.2+0.8} {parent.p*0.2+0.8} {parent.p*0.2+0.8} {parent.p*0.2+0.8}}
+  name Multiply1
+  xpos -318
+  ypos 767
+ }
+push $Nbb0b4800
+ Blur {
+  size {{"DP.j(1/parent.s + 0) / parent.f"} {"DP.j(1/parent.s + 0) / parent.f"}}
+  crop false
+  name Blur0
+  xpos -418
+  ypos 729
+ }
+ Multiply {
+  value {{"parent.p * 1/parent.s + (1-1/parent.s)"}}
+  name Multiply0
+  xpos -418
+  ypos 767
+ }
+ Merge2 {
+  inputs 10+1
+  operation plus
+  name MergeBlurs
+  xpos -418
+  ypos 864
+ }
+ Multiply {
+  value {{parent.intensity*parent.tint/parent.s} {parent.intensity*parent.tint/parent.s} {parent.intensity*parent.tint/parent.s} {parent.intensity*parent.tint/parent.s}}
+  name MultiplyR
+  xpos -418
+  ypos 890
+ }
+ Expression {
+  expr0 isnan(r)?0:r
+  expr1 isnan(g)?0:g
+  expr2 isnan(b)?0:b
+  expr3 isnan(a)?0:a
+  name NanToBlack
+  xpos -418
+  ypos 928
+ }
+push $Nce018400
+ Dot {
+  name Dot4
+  xpos -739
+  ypos 769
+ }
+set Nd024e000 [stack 0]
+ Dot {
+  name Dot2
+  xpos -629
+  ypos 769
+ }
+ Shuffle {
+  red black
+  green black
+  blue black
+  name Shuffle
+  xpos -663
+  ypos 847
+  disable {{!parent.effect_only}}
+ }
+ Remove {
+  operation keep
+  channels rgb
+  name Remove1
+  xpos -663
+  ypos 873
+  disable {{!parent.effect_only}}
+ }
+ Merge2 {
+  inputs 2
+  operation plus
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  also_merge all
+  name Merge1
+  xpos -663
+  ypos 928
+ }
+ Dot {
+  name Dot3
+  xpos -629
+  ypos 978
+ }
+push $Nd024e000
+ Merge2 {
+  inputs 2+1
+  operation copy
+  output {rgba.red rgba.green rgba.blue -rgba.alpha}
+  also_merge all
+  mix 0.296
+  name Merge
+  xpos -773
+  ypos 974
+ }
+ Crop {
+  box {{parent.crop?0:-parent.overscan} {parent.crop?0:-parent.overscan} {parent.crop?width:width+parent.overscan.w} {parent.crop?height:height+parent.overscan.h}}
+  intersect true
+  name CropOverscan
+  xpos -773
+  ypos 1000
+  disable {{"!parent.enableOverscan && !parent.crop"}}
+  addUserKnob {20 User}
+  addUserKnob {22 cropToBbox l "Crop to Bounding Box" -STARTLINE T codeBBox()}
+ }
+ Output {
+  name Output
+  xpos -773
+  ypos 1026
+ }
+end_group
+set Nbc55f600 [stack 0]
+push $Na2040800
+Read {
+ inputs 0
+ file_type exr
+ file C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/render/pinkman.studio.rnd_v002.karmarendersettings.0001.exr
+ format "2560 1440 0 0 2560 1440 1 "
+ origset true
+ colorspace "Linear Rec.709 (sRGB)"
+ name Read1
+ xpos -104
+ ypos -58
+}
+Write {
+ file C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/Compose/publish/notonemap.png
+ file_type png
+ create_directories true
+ checkHashOnRead false
+ version 12
+ in_colorspace scene_linear
+ out_colorspace scene_linear
+ ocioColorspace scene_linear
+ display "sRGB - Display"
+ view "ACES 1.0 - SDR Video"
+ name Write2
+ xpos -104
+ ypos 116
+}
+Read {
+ inputs 0
+ file_type exr
+ file C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/render/pinkman.studio.rnd_v002.karmarendersettings.noTone.0001.exr
+ format "2560 1440 0 0 2560 1440 1 "
+ origset true
+ colorspace "Linear Rec.709 (sRGB)"
+ name Read2
+ xpos -427
+ ypos -78
+}
+Write {
+ file C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/Compose/publish/tonemap.png
+ file_type png
+ create_directories true
+ checkHashOnRead false
+ version 11
+ ocioColorspace scene_linear
+ display "sRGB - Display"
+ view "ACES 1.0 - SDR Video"
+ name Write1
+ xpos -427
+ ypos 125
+}
+Viewer {
+ inputs 4
+ frame 12
+ frame_range 1-100
+ input_number 3
+ gamma 1.3
+ colour_sample_bbox {0.154687494 0.32421875 0.155468747 0.3249999881}
+ samplepoints {{0.154687494 0.32421875}
+   }
+ viewerProcess "ACES 1.0 - SDR Video (sRGB - Display)"
+ monitorOutNDISenderName "NukeX - Slapcomp - Viewer1"
+ name Viewer1
+ xpos -122
+ ypos 599
+}
+push $Nbc55f600
+Write {
+ file C:/Users/User/Documents/GitHub/pinkman_studio/prod/r-n-d/Compose/publish/card.png
+ file_type png
+ create_directories true
+ checkHashOnRead false
+ version 13
+ ocioColorspace scene_linear
+ display "sRGB - Display"
+ view "ACES 1.0 - SDR Video"
+ name Write3
+ xpos 388
+ ypos 658
+}
